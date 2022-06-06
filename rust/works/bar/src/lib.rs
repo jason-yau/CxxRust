@@ -1,5 +1,7 @@
 use cxx::CxxString;
 
+mod mystruct;
+
 #[cxx::bridge(namespace = "works")]
 mod ffi {
     extern "Rust" {

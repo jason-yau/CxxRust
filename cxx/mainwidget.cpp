@@ -7,6 +7,7 @@
 #include "second/src/lib.rs.h"
 #include "foo/src/lib.rs.h"
 #include "bar/src/lib.rs.h"
+#include "bar/src/mystruct.rs.h"
 
 
 extern "C" {
@@ -51,5 +52,9 @@ void MainWidget::testRust() {
 
     rust::String s = second::to_rust_string("hello world");
     qDebug() << "to_rust_string： " << s.c_str();
+
+    auto MyStruct = rust::getMyStruct();
+    qDebug() << MyStruct.s.c_str();
+    qDebug() << MyStruct.c;
 }
 
