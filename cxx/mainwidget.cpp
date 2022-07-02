@@ -3,11 +3,11 @@
 
 #include <QDebug>
 
-#include "basic/src/lib.rs.h"
-#include "second/src/lib.rs.h"
-#include "foo/src/lib.rs.h"
-#include "bar/src/lib.rs.h"
-#include "bar/src/mystruct.rs.h"
+#include "basic/lib.rs.h"
+#include "second/lib.rs.h"
+#include "foo/lib.rs.h"
+#include "bar/lib.rs.h"
+#include "bar/mystruct.rs.h"
 
 
 extern "C" {

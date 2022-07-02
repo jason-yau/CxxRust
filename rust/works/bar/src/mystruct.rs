@@ -1,5 +1,5 @@
 #[cxx::bridge(namespace = "rust")]
-mod ffi {
+pub mod ffi {
     pub struct MyStruct {
         pub s: String,
         pub c: u8,

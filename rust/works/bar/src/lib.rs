@@ -3,7 +3,7 @@ use cxx::CxxString;
 mod mystruct;
 
 #[cxx::bridge(namespace = "works")]
-mod ffi {
+pub mod ffi {
     extern "Rust" {
         fn greeting(s: &CxxString) -> String;
     }

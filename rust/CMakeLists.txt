@@ -1,24 +1,13 @@
 include(${CMAKE_SOURCE_DIR}/cmake/rust.cmake)
 
 # Add rust sources (Only add what to be compiled by cxx-build)
-add_rust_sources(ffi::basic
-    lib.rs
+add_rust_sources(
+    basic/src/lib.rs
+    second/src/lib.rs
+    works/foo/src/lib.rs
+    works/bar/src/lib.rs
+    works/bar/src/mystruct.rs
 )
 
-add_rust_sources(ffi::second
-    lib.rs
-)
-
-add_rust_sources(foo
-    lib.rs
-)
-
-add_rust_sources(bar
-    lib.rs
-    mystruct.rs
-)
-
-# Add rust crates
-add_rust_crates(PATH ${CMAKE_SOURCE_DIR}/rust/works)
-add_rust_crates(PATH ${CMAKE_SOURCE_DIR}/rust/basic NAMESPACE ffi)
-add_rust_crates(PATH ${CMAKE_SOURCE_DIR}/rust/second NAMESPACE ffi)
+# Add rust library
+add_rust_lilbrary(rustlibrary)

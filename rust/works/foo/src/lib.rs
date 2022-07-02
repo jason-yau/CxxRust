@@ -1,7 +1,7 @@
 use cxx::CxxString;
 
 #[cxx::bridge(namespace = "works")]
-mod ffi {
+pub mod ffi {
     extern "Rust" {
         #[cxx_name = "sayHi"]
         fn say_hi(s: &CxxString) -> String;
