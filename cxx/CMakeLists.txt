@@ -42,8 +42,6 @@ else()
     qt5_create_translation(QM_FILES ${CMAKE_SOURCE_DIR} ${TS_FILES})
 endif()
 
-include(${CMAKE_SOURCE_DIR}/cmake/rust.cmake)
-
 target_link_libraries(CxxRust
     PRIVATE
         Qt${QT_VERSION_MAJOR}::Widgets

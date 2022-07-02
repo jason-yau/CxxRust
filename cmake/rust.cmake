@@ -1,15 +1,15 @@
-cmake_minimum_required(VERSION 3.15)
+cmake_minimum_required(VERSION 3.20)
 
 add_subdirectory(${CMAKE_SOURCE_DIR}/cmake/corrosion .corrosion)
 
 if(NOT TARGET Rust::CxxBridge)
-    find_program(CXXBRIDGE_EXECUTABLE cxxbridge PATHS $ENV{HOME}/.cargo/bin)
+    find_program(CXXBRIDGE_EXECUTABLE cxxbridge REQUIRED PATHS $ENV{HOME}/.cargo/bin)
     if(NOT CXXBRIDGE_EXECUTABLE)
         get_property(CARGO_EXECUTABLE TARGET Rust::Cargo PROPERTY IMPORTED_LOCATION)
-        execute_process(COMMAND ${CARGO_EXECUTABLE} install cxxbridge COMMAND_ECHO STDERR)
+        execute_process(COMMAND ${CARGO_EXECUTABLE} install cxxbridge-cmd COMMAND_ECHO STDERR)
         find_program(CXXBRIDGE_EXECUTABLE cxxbridge PATHS $ENV{HOME}/.cargo/bin)
         if(NOT CXXBRIDGE_EXECUTABLE)
-            message(FATAL_ERROR "cxxbridge is required. Try `cargo install cxxbridge` to install it")
+            message(FATAL_ERROR "cxxbridge is required. Try `cargo install cxxbridge-cmd` to install it")
         endif()
     endif()
 
