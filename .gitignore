@@ -5,3 +5,4 @@
 /cmake/corrosion/*
 .DS_Store
 *.user
+Cargo.lock

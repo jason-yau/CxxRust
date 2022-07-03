@@ -8,7 +8,7 @@
 #include "foo/lib.rs.h"
 #include "bar/lib.rs.h"
 #include "bar/mystruct.rs.h"
-
+#include "second/parse_xml.rs.h"
 
 extern "C" {
     int32_t rust_extern_c_integer();
@@ -21,6 +21,8 @@ MainWidget::MainWidget(QWidget *parent)
     ui->setupUi(this);
 
     testRust();
+
+    testSerde();
 }
 
 MainWidget::~MainWidget()
@@ -56,5 +58,19 @@ void MainWidget::testRust() {
     auto MyStruct = rust::getMyStruct();
     qDebug() << MyStruct.s.c_str();
     qDebug() << MyStruct.c;
+}
+
+void MainWidget::testSerde() {
+    auto root = second::getRoot();
+    qDebug() << "========== Print foo";
+    qDebug() << "foo.integer: " << root.foo.integer;
+    qDebug() << "foo vec:";
+    for(auto &item : root.foo.vec) {
+        qDebug() << item.c_str();
+    }
+
+    qDebug() << "========== Print bar";
+    qDebug() << "bar.value: " << root.bar.value;
+    qDebug() << "bar.byte: " << int(root.bar.byte);
 }
 

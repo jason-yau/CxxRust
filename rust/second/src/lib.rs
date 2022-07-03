@@ -1,3 +1,5 @@
+mod parse_xml;
+
 use cxx::CxxString;
 
 #[cxx::bridge(namespace = "second")]

@@ -4,6 +4,7 @@ include(${CMAKE_SOURCE_DIR}/cmake/rust.cmake)
 add_rust_sources(
     basic/src/lib.rs
     second/src/lib.rs
+    second/src/parse_xml.rs
     works/foo/src/lib.rs
     works/bar/src/lib.rs
     works/bar/src/mystruct.rs

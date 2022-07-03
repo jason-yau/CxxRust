@@ -17,6 +17,7 @@ public:
 
 private:
     void testRust();
+    void testSerde();
 
 private:
     Ui::MainWidget *ui;
