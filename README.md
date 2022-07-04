@@ -16,7 +16,7 @@ add_rust_sources(
     src/mod/source.rs
 )
 
-add_rust_lilbrary(myrustlib)
+add_rust_library(myrustlib)
 
 target_link_libraries(cpp-exe PRIVATE myrustlib)
 ```
