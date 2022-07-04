@@ -108,7 +108,7 @@ function(_make_cargo_toml_file)
     file(WRITE ${CMAKE_CURRENT_BINARY_DIR}/${LIB_NAME}/Cargo.toml ${CARGO_TOML_FILE_CONTENTS})
 endfunction(_make_cargo_toml_file)
 
-function(add_rust_lilbrary LIBRARY)
+function(add_rust_library LIBRARY)
     if(NOT RUST_CRATES)
         message(FATAL_ERROR "Need add_rust_sources before add_rust_lilbrary")
     endif()
@@ -123,11 +123,6 @@ function(add_rust_lilbrary LIBRARY)
         CRATES ${RUST_CRATES}
     )
 
-    get_property(
-        CARGO_EXECUTABLE
-        TARGET Rust::Cargo PROPERTY IMPORTED_LOCATION
-    )
-
     corrosion_import_crate(
         MANIFEST_PATH ${CMAKE_CURRENT_BINARY_DIR}/${LIBRARY}/Cargo.toml
     )
@@ -140,4 +135,4 @@ function(add_rust_lilbrary LIBRARY)
         TARGET ${LIBRARY}-static
         PROPERTY INTERFACE_INCLUDE_DIRECTORIES ${CMAKE_CURRENT_BINARY_DIR}/cxxbridge
     )
-endfunction(add_rust_lilbrary)
+endfunction(add_rust_library)
