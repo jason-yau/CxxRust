@@ -11,4 +11,4 @@ add_rust_sources(
 )
 
 # Add rust library
-add_rust_lilbrary(rustlibrary)
+add_rust_library(rustlibrary)
