@@ -127,12 +127,20 @@ function(add_rust_library LIBRARY)
         MANIFEST_PATH ${CMAKE_CURRENT_BINARY_DIR}/${LIBRARY}/Cargo.toml
     )
 
-    set_property(
-        TARGET ${LIBRARY}-static
-        PROPERTY INTERFACE_SOURCES ${CXXBRIDGE_SOURCES}
+    set_target_properties(${LIBRARY}-static
+        PROPERTIES
+            INTERFACE_SOURCES "${CXXBRIDGE_SOURCES}"
+            INTERFACE_INCLUDE_DIRECTORIES "${CMAKE_CURRENT_BINARY_DIR}/cxxbridge"
     )
-    set_property(
-        TARGET ${LIBRARY}-static
-        PROPERTY INTERFACE_INCLUDE_DIRECTORIES ${CMAKE_CURRENT_BINARY_DIR}/cxxbridge
-    )
+
+    if(MSVC)
+        if(CMAKE_BUILD_TYPE STREQUAL "Debug")
+            # Hack around Rust standard library linked with Release version of C runtime
+            # Refer to https://github.com/robmikh/linkerissuerepro for explanation
+            set_property(
+                TARGET ${LIBRARY}-static
+                APPEND PROPERTY INTERFACE_COMPILE_OPTIONS "/MD"
+            )
+        endif()
+    endif()
 endfunction(add_rust_library)
