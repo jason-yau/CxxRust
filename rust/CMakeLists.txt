@@ -1,7 +1,6 @@
 include(${CMAKE_SOURCE_DIR}/cmake/rust.cmake)
 
-# Add rust sources (Only add what to be compiled by cxx-build)
-add_rust_sources(
+cxxbridge_add_library(rustlibrary
     basic/src/lib.rs
     second/src/lib.rs
     second/src/parse_xml.rs
@@ -9,6 +8,3 @@ add_rust_sources(
     works/bar/src/lib.rs
     works/bar/src/mystruct.rs
 )
-
-# Add rust library
-add_rust_library(rustlibrary)
