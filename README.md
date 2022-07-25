@@ -1,7 +1,7 @@
 # CxxRust
 Integrate Rust in a Qt Cmake project with Corrosion and Cxx.
 
-## Usage
+## Usage of `rust.cmake`
 ```cmake
 cmake_minimum_required(VERSION 3.20)
 project(MyCxxRustProject)
@@ -9,16 +9,16 @@ include(cmake/rust.cmake)
 
 add_executable(cpp-exe main.cpp)
 
-add_rust_sources(
-    path/to/rust/source.rs
-    crate/src/mod/source.rs
-    workspace/crate/src/mod/source.rs
-    src/mod/source.rs
+cxxbridge_add_library(myrustlib
+    path/to/cxx/bridge/source.rs
+    path/to/multicrates/cxx/bridge/source.rs
+    path/to/workspace/cxx/bridge/source.rs
 )
 
-add_rust_library(myrustlib)
-
-target_link_libraries(cpp-exe PRIVATE myrustlib)
+target_link_libraries(cpp-exe
+    PRIVATE
+        myrustlib
+)
 ```
 
 ## How to run
